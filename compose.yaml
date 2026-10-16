@@ -1,0 +1,44 @@
+
+name: telcocore
+
+services:
+  namenode:
+    image: apache/hadoop:3.4.1
+    hostname: namenode
+    command: ["hdfs", "namenode"]
+    environment:
+      HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
+      ENSURE_NAMENODE_DIR: /hadoop/dfs/name
+    ports:
+      - "127.0.0.1:9870:9870"
+    volumes:
+      - namenode_data:/hadoop/dfs/name
+      - ./configs/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ./configs/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+    networks:
+      - telcocore_net
+    restart: unless-stopped
+
+  datanode:
+    image: apache/hadoop:3.4.1
+    hostname: datanode
+    command: ["hdfs", "datanode"]
+    environment:
+      HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
+    volumes:
+      - datanode_data:/hadoop/dfs/data
+      - ./configs/hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ./configs/hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+    depends_on:
+      - namenode
+    networks:
+      - telcocore_net
+    restart: unless-stopped
+
+volumes:
+  namenode_data:
+  datanode_data:
+
+networks:
+  telcocore_net:
+    driver: bridge

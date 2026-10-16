@@ -1,0 +1,4 @@
+cdr_id,subscriber_id,event_type,duration_sec,cell_id
+CDR001,SUB001,VOICE,120,CELL01
+CDR002,SUB002,SMS,0,CELL02
+CDR003,SUB003,DATA,45,CELL01

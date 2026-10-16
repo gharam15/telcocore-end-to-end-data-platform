@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Environment / Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated Data
+data/raw/
+data/generated/
+data/output/
+data/checkpoints/
+
+# Spark & Hadoop
+spark-warehouse/
+metastore_db/
+derby.log
+*.crc
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+
+# Operating System
+.DS_Store
+Thumbs.db
