@@ -2,6 +2,11 @@
 name: telcocore
 
 services:
+
+  # ==========================================
+  # HADOOP HDFS - STORAGE LAYER
+  # ==========================================
+
   namenode:
     image: apache/hadoop:3.4.1
     hostname: namenode
@@ -35,9 +40,65 @@ services:
       - telcocore_net
     restart: unless-stopped
 
+  # ==========================================
+  # APACHE SPARK - PROCESSING LAYER
+  # ==========================================
+
+  spark-master:
+    image: apache/spark:3.5.9-java17-python3
+    hostname: spark-master
+    user: "185"
+    entrypoint: ["/opt/spark/bin/spark-class"]
+    command:
+      - org.apache.spark.deploy.master.Master
+    environment:
+      SPARK_MASTER_HOST: spark-master
+      SPARK_MASTER_PORT: "7077"
+      SPARK_MASTER_WEBUI_PORT: "8080"
+    ports:
+      - "127.0.0.1:8090:8080"
+
+    volumes:
+      - ./configs/hadoop/core-site.xml:/opt/spark/conf/core-site.xml:ro
+      - ./configs/hadoop/hdfs-site.xml:/opt/spark/conf/hdfs-site.xml:ro
+      - ./src:/opt/spark/jobs:ro  
+    networks:
+      - telcocore_net
+    restart: unless-stopped
+
+  spark-worker:
+    image: apache/spark:3.5.9-java17-python3
+    hostname: spark-worker
+    user: "185"
+    entrypoint: ["/opt/spark/bin/spark-class"]
+    command:
+      - org.apache.spark.deploy.worker.Worker
+      - spark://spark-master:7077
+    environment:
+      SPARK_WORKER_CORES: "2"
+      SPARK_WORKER_MEMORY: "2g"
+      SPARK_WORKER_WEBUI_PORT: "8081"
+    depends_on:
+      - spark-master
+    volumes:
+      - ./configs/hadoop/core-site.xml:/opt/spark/conf/core-site.xml:ro
+      - ./configs/hadoop/hdfs-site.xml:/opt/spark/conf/hdfs-site.xml:ro
+      - ./src:/opt/spark/jobs:ro
+    networks:
+      - telcocore_net
+    restart: unless-stopped
+
+# ==========================================
+# PERSISTENT STORAGE
+# ==========================================
+
 volumes:
   namenode_data:
   datanode_data:
+
+# ==========================================
+# DOCKER NETWORK
+# ==========================================
 
 networks:
   telcocore_net:
