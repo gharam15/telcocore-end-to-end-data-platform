@@ -1,0 +1,9 @@
+plan_id,plan_name,monthly_fee_egp,data_allowance_gb,voice_allowance_min,sms_allowance,customer_segment,overage_egp_per_gb,overage_egp_per_min,overage_egp_per_sms
+P01,Starter,90,5,120,50,PREPAID,12,0.42,0.2
+P02,Social,140,12,100,100,PREPAID,12,0.42,0.2
+P03,Everyday,210,20,350,150,PREPAID,12,0.42,0.2
+P04,Data Plus,300,45,200,150,PREPAID,12,0.42,0.2
+P05,Talk Plus,300,15,1000,300,PREPAID,12,0.42,0.2
+P06,Max,450,75,850,400,PREPAID,12,0.42,0.2
+P07,Flex Postpaid,550,100,1000,500,POSTPAID,12,0.42,0.2
+P08,Premium Postpaid,850,200,2000,1000,POSTPAID,12,0.42,0.2
