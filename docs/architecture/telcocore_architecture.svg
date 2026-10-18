@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 790" role="img" aria-labelledby="title desc">
+<title id="title">TelcoCore End-to-End Architecture</title>
+<desc id="desc">Implemented telecom generators, data-quality validation, HDFS landing, Spark and Iceberg proof of concept; planned Kafka streaming, Silver and Gold, OCR and recommendation platform, Airflow and monitoring.</desc>
+<defs>
+<linearGradient id="bg" x2="1" y2="1"><stop stop-color="#08172d"/><stop offset="1" stop-color="#102f45"/></linearGradient>
+<marker id="arrow" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0 0L11 4.5L0 9Z" fill="#59d1ed"/></marker>
+<marker id="pArrow" markerWidth="11" markerHeight="9" refX="10" refY="4.5" orient="auto"><path d="M0 0L11 4.5L0 9Z" fill="#edb35a"/></marker>
+<style>
+.h{font:700 31px Arial,sans-serif;fill:#fff}.sub{font:16px Arial,sans-serif;fill:#b9cde0}.label{font:700 19px Arial,sans-serif;fill:#e9f6ff}.t{font:14px Arial,sans-serif;fill:#c9ddea}.mini{font:12px Arial,sans-serif;fill:#b1c9db}.tag{font:700 12px Arial,sans-serif;fill:#06364a}.tagP{font:700 12px Arial,sans-serif;fill:#553a0c}.box{fill:#153951;stroke:#3c7b99;stroke-width:2;rx:16}.plan{fill:#283744;stroke:#f0ae4e;stroke-width:2;stroke-dasharray:9 6;rx:16}.line{fill:none;stroke:#59d1ed;stroke-width:3;marker-end:url(#arrow)}.pLine{fill:none;stroke:#edb35a;stroke-width:3;stroke-dasharray:8 6;marker-end:url(#pArrow)}
+</style></defs>
+<rect width="1440" height="790" fill="url(#bg)"/>
+<text x="60" y="64" class="h">TelcoCore  |  Telecom Data Platform</text>
+<text x="60" y="94" class="sub">Batch + Streaming Lakehouse  •  Customer Analytics  •  Personalized Mobile Plan Recommendation</text>
+<rect x="1136" y="37" width="113" height="30" rx="15" fill="#64d6b6"/><text x="1157" y="57" class="tag">BUILT / TESTED</text>
+<rect x="1263" y="37" width="112" height="30" rx="15" fill="#f3c678"/><text x="1287" y="57" class="tagP">PLANNED</text>
+
+<rect class="box" x="46" y="150" width="245" height="210"/>
+<text class="label" x="67" y="188">📁 Telecom Sources</text>
+<text class="t" x="67" y="221">Subscribers + Profiles</text><text class="t" x="67" y="250">CDR + Monthly Usage</text><text class="t" x="67" y="279">Plans + Recharge + Towers</text><text class="t" x="67" y="308">Per-app Mobile Usage</text><text class="mini" x="67" y="335">Synthetic, linked customer IDs</text>
+
+<rect class="box" x="347" y="150" width="245" height="210"/>
+<text class="label" x="368" y="188">🐍 Python Generators</text><text class="t" x="368" y="221">Historical CSV datasets</text><text class="t" x="368" y="250">Streaming event simulator</text><text class="t" x="368" y="279">App usage mock records</text><text class="t" x="368" y="308">Reconciliation tests</text><text class="mini" x="368" y="335">1K customers · 54K CDRs</text>
+<path class="line" d="M292 253H345"/>
+
+<rect class="box" x="648" y="150" width="245" height="210"/>
+<text class="label" x="670" y="188">🐘 Hadoop HDFS</text><text class="t" x="670" y="221">Raw batch landing zone</text><text class="t" x="670" y="250">10 batch + 2 reference CSVs</text><text class="t" x="670" y="279">Persistent HDFS volumes</text><text class="mini" x="670" y="327">/telcocore/raw/telecom/</text>
+<path class="line" d="M593 253H646"/>
+
+<rect class="box" x="949" y="150" width="444" height="210"/>
+<text class="label" x="971" y="188">⚡ Apache Spark + Iceberg (HDFS)</text><text class="t" x="971" y="221">Spark Standalone: Master + Worker</text><text class="t" x="971" y="250">Iceberg Hadoop Catalog + Parquet</text><text class="t" x="971" y="279">Bronze CDR table smoke test</text><text class="t" x="971" y="308">Metadata + Snapshot inspection</text><text class="mini" x="971" y="335">All-dataset Bronze ETL is NEXT</text>
+<path class="line" d="M894 253H947"/>
+
+<rect class="plan" x="46" y="425" width="300" height="192"/>
+<text class="label" x="66" y="462">📶 Kafka Streaming</text><text class="t" x="66" y="496">Synthetic CDR producer → topic</text><text class="t" x="66" y="526">Spark Structured Streaming</text><text class="t" x="66" y="556">Watermarks + checkpoints</text><text class="mini" x="66" y="589">Planned ingestion path</text>
+
+<rect class="plan" x="382" y="425" width="300" height="192"/>
+<text class="label" x="402" y="462">🧊 Iceberg Medallion</text><text class="t" x="402" y="496">Bronze: validated ingestion</text><text class="t" x="402" y="526">Silver: dedup + enrichment</text><text class="t" x="402" y="556">Gold: subscriber features</text><text class="mini" x="402" y="589">Full pipelines planned</text>
+
+<rect class="plan" x="718" y="425" width="300" height="192"/>
+<text class="label" x="738" y="462">🧠 Recommendation Engine</text><text class="t" x="738" y="496">Usage + budget + plan benefits</text><text class="t" x="738" y="526">Cost-aware ranking / ML later</text><text class="t" x="738" y="556">Top 3 plans + explanations</text><text class="mini" x="738" y="589">Personalized package selection</text>
+
+<rect class="plan" x="1054" y="425" width="339" height="192"/>
+<text class="label" x="1074" y="462">📱 Customer App + OCR</text><text class="t" x="1074" y="496">Upload app-usage screenshot</text><text class="t" x="1074" y="526">OCR → customer verification</text><text class="t" x="1074" y="556">Compare plans and savings</text><text class="mini" x="1074" y="589">No upload feature live yet</text>
+
+<path class="pLine" d="M170 362V423"/><path class="pLine" d="M347 522H380"/><path class="pLine" d="M683 522H716"/><path class="pLine" d="M1019 522H1052"/><path class="pLine" d="M532 423V387H1160V362"/>
+
+<rect x="46" y="671" width="1347" height="80" rx="14" fill="#112b40" stroke="#375c77" stroke-width="2"/>
+<text x="69" y="703" class="label">Infrastructure and future operations</text>
+<text x="69" y="731" class="t">Docker Compose (built)    ·    Hive Metastore (planned)    ·    Airflow (planned)    ·    Prometheus / Grafana (planned)</text>
+</svg>
